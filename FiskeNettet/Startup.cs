@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 namespace FiskeNettet
 {
@@ -40,11 +41,23 @@ namespace FiskeNettet
 
             // Services
             services.AddSingleton<IPeopleService, PeopleService>();
+            // AddScoped i stedet
 
             // Repositories
             services.AddSingleton<IPeopleRepository, PeopleRepository>();
 
             services.AddControllers();
+
+            // Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "FiskeNettet",
+                    Description = ""
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +67,13 @@ namespace FiskeNettet
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FiskeNettet");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
