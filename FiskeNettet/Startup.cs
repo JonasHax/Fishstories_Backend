@@ -36,15 +36,14 @@ namespace FiskeNettet
             services.Configure<PeopleStoreDatabaseSettings>(
                 Configuration.GetSection(nameof(PeopleStoreDatabaseSettings)));
 
-            services.AddSingleton<IPeopleStoreDatabaseSettings>(sp =>
+            services.AddScoped<IPeopleStoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<PeopleStoreDatabaseSettings>>().Value);
 
             // Services
-            services.AddSingleton<IPeopleService, PeopleService>();
-            // AddScoped i stedet
+            services.AddScoped<IPeopleService, PeopleService>();
 
             // Repositories
-            services.AddSingleton<IPeopleRepository, PeopleRepository>();
+            services.AddScoped<IPeopleRepository, PeopleRepository>();
 
             services.AddControllers();
 
