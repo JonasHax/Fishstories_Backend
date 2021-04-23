@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FiskeNettet.Entities.DatabaseSettings;
 using FiskeNettet.Models;
 using FiskeNettet.Repositories;
 using FiskeNettet.Repositories.Interfaces;
@@ -9,12 +6,9 @@ using FiskeNettet.Services;
 using FiskeNettet.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
@@ -39,11 +33,20 @@ namespace FiskeNettet
             services.AddScoped<IPeopleStoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<PeopleStoreDatabaseSettings>>().Value);
 
+            services.Configure<FishingSpotDatabaseSettings>(
+                Configuration.GetSection(nameof(FishingSpotDatabaseSettings)));
+
+            services.AddScoped<IFishingSpotDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<FishingSpotDatabaseSettings>>().Value);
+
+
             // Services
             services.AddScoped<IPeopleService, PeopleService>();
+            services.AddScoped<IFishingSpotService, FishingSpotService>();
 
             // Repositories
             services.AddScoped<IPeopleRepository, PeopleRepository>();
+            services.AddScoped<IFishingSpotRepository, FishingSpotRepository>();
 
             services.AddControllers();
 
