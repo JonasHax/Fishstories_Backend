@@ -25,9 +25,9 @@ namespace FiskeNettet.Repositories
             _spotz.InsertOne(spot);
         }
 
-        public void Delete(string name)
+        public void Delete(string spotId)
         {
-            _spotz.DeleteOne(p => p.Id == ObjectId.Parse(name) );
+            _spotz.DeleteOne(p => p.Id == ObjectId.Parse(spotId));
         }
 
         public List<FishingSpot> Get()
@@ -35,9 +35,9 @@ namespace FiskeNettet.Repositories
             return _spotz.Find<FishingSpot>(p => true).ToList();
         }
 
-        public FishingSpot Get(string name)
+        public FishingSpot Get(string spotId)
         {
-            return _spotz.Find(p => p.Name == name).First();
+            return _spotz.Find(spot => spot.Id == ObjectId.Parse(spotId)).First();
         }
     }
 }

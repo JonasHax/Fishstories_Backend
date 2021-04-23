@@ -7,7 +7,7 @@ namespace FiskeNettet.Services.Interfaces
     {
         List<FishingSpot> Get();
 
-        FishingSpot Get(string name);
+        FishingSpot Get(string id);
 
         void Create(FishingSpot spot);
 

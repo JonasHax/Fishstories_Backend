@@ -29,9 +29,9 @@ namespace FiskeNettet.Services
             return _FishingSpotRepository.Get();
         }
 
-        public FishingSpot Get(string name)
+        public FishingSpot Get(string id)
         {
-            return _FishingSpotRepository.Get(name);
+            return _FishingSpotRepository.Get(id);
         }
     }
 }

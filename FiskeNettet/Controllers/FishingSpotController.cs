@@ -16,10 +16,10 @@ namespace FiskeNettet.Controllers
             _fishingSpotService = fishingSpotService;
         }
 
-        [HttpGet("{name}")]
-        public ActionResult<FishingSpot> Get(string name)
+        [HttpGet("{id}")]
+        public ActionResult<FishingSpot> Get(string id)
         {
-            return Ok(_fishingSpotService.Get(name));
+            return Ok(_fishingSpotService.Get(id));
         }
 
         [HttpGet]
