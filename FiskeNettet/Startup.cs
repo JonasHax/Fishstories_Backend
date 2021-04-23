@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 
 namespace FiskeNettet
@@ -39,6 +40,16 @@ namespace FiskeNettet
             services.AddScoped<IFishingSpotDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<FishingSpotDatabaseSettings>>().Value);
 
+            // Cors
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:5001")
+                            .WithHeaders(HeaderNames.AccessControlAllowHeaders, "*");
+                    });
+            });
 
             // Services
             services.AddScoped<IPeopleService, PeopleService>();
@@ -76,6 +87,8 @@ namespace FiskeNettet
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FiskeNettet");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 

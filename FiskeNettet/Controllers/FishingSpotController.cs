@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http.Cors;
 using FiskeNettet.Models;
 using FiskeNettet.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
