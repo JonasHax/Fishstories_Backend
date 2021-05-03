@@ -13,6 +13,9 @@ namespace FiskeNettet.Entities.Models
         [BsonId]
         public ObjectId Id { get; set; }
 
+        [BsonElement("location")]
+        public string Location { get; set; }
+
         [BsonElement("description")]
         public string Description { get; set; }
 
