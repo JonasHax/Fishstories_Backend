@@ -40,6 +40,12 @@ namespace FiskeNettet
             services.AddScoped<IFishingSpotDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<FishingSpotDatabaseSettings>>().Value);
 
+            services.Configure<CatchReportsDatabaseSettings>(
+                Configuration.GetSection(nameof(CatchReportsDatabaseSettings)));
+
+            services.AddScoped<ICatchReportsDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<CatchReportsDatabaseSettings>>().Value);
+
             // Cors
             services.AddCors(options =>
             {
@@ -54,10 +60,12 @@ namespace FiskeNettet
             // Services
             services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IFishingSpotService, FishingSpotService>();
+            services.AddScoped<ICatchReportService, CatchReportService>();
 
             // Repositories
             services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<IFishingSpotRepository, FishingSpotRepository>();
+            services.AddScoped<ICatchReportRepository, CatchReportRepository>();
 
             services.AddControllers();
 
