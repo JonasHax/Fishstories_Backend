@@ -17,17 +17,17 @@ namespace FiskeNettet.Services
             _catchReportRepository = catchReportRepository;
         }
 
-        public void Create(CatchReport report)
+        public void Create(CatchReportDTO report)
         {
             _catchReportRepository.Create(report);
         }
 
-        public List<CatchReport> Get()
+        public List<CatchReportDTO> Get()
         {
             return _catchReportRepository.Get();
         }
 
-        public CatchReport Get(string id)
+        public CatchReportDTO Get(string id)
         {
             return _catchReportRepository.Get(id);
         }

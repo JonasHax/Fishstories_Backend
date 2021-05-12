@@ -12,27 +12,27 @@ namespace FiskeNettet.Repositories
 {
     public class CatchReportRepository : ICatchReportRepository
     {
-        private readonly IMongoCollection<CatchReport> _reports;
+        private readonly IMongoCollection<CatchReportDTO> _reports;
 
         public CatchReportRepository(ICatchReportsDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _reports = database.GetCollection<CatchReport>(settings.CatchReportsCollectionName);
+            _reports = database.GetCollection<CatchReportDTO>(settings.CatchReportsCollectionName);
         }
 
-        public void Create(CatchReport report)
+        public void Create(CatchReportDTO report)
         {
             _reports.InsertOne(report);
         }
 
-        public List<CatchReport> Get()
+        public List<CatchReportDTO> Get()
         {
-            return _reports.Find<CatchReport>(p => true).ToList();
+            return _reports.Find<CatchReportDTO>(p => true).ToList();
         }
 
-        public CatchReport Get(string reportId)
+        public CatchReportDTO Get(string reportId)
         {
             return _reports.Find(report => report.Id == ObjectId.Parse(reportId)).First();
         }

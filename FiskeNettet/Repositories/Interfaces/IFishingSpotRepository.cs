@@ -5,11 +5,11 @@ namespace FiskeNettet.Repositories.Interfaces
 {
     public interface IFishingSpotRepository
     {
-        List<FishingSpot> Get();
+        List<FishingSpotDTO> Get();
 
-        FishingSpot Get(string id);
+        FishingSpotDTO Get(string id);
 
-        void Create(FishingSpot spot);
+        void Create(FishingSpotDTO spot);
 
         void Delete(string id);
     }

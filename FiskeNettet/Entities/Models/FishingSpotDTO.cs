@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FiskeNettet.Models
 {
-    public class FishingSpot
+    public class FishingSpotDTO
     {
         [BsonId]
         public ObjectId Id { get; set; }

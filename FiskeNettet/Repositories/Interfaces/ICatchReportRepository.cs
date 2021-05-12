@@ -8,11 +8,11 @@ namespace FiskeNettet.Repositories.Interfaces
 {
     public interface ICatchReportRepository
     {
-        List<CatchReport> Get();
+        List<CatchReportDTO> Get();
 
-        CatchReport Get(string id);
+        CatchReportDTO Get(string id);
 
-        void Create(CatchReport report);
+        void Create(CatchReportDTO report);
 
         //void Delete(string id);
     }

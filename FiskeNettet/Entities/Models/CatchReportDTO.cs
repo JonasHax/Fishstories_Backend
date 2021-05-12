@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FiskeNettet.Entities.Models
 {
-    public class CatchReport
+    public class CatchReportDTO
     {
         [BsonId]
         public ObjectId Id { get; set; }

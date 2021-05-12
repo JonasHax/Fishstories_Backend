@@ -18,19 +18,19 @@ namespace FiskeNettet.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<FishingSpot> Get(string id)
+        public ActionResult<FishingSpotDTO> Get(string id)
         {
             return Ok(_fishingSpotService.Get(id));
         }
 
         [HttpGet]
-        public ActionResult<List<FishingSpot>> Get()
+        public ActionResult<List<FishingSpotDTO>> Get()
         {
             return _fishingSpotService.Get();
         }
 
         [HttpPost]
-        public ActionResult Create(FishingSpot spot)
+        public ActionResult Create(FishingSpotDTO spot)
         {
             _fishingSpotService.Create(spot);
             return Ok(spot);

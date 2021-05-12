@@ -21,19 +21,19 @@ namespace FiskeNettet.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CatchReport> Get(string id)
+        public ActionResult<CatchReportDTO> Get(string id)
         {
             return Ok(_catchReportService.Get(id));
         }
 
         [HttpGet]
-        public ActionResult<List<CatchReport>> Get()
+        public ActionResult<List<CatchReportDTO>> Get()
         {
             return _catchReportService.Get();
         }
 
         [HttpPost]
-        public ActionResult Create(CatchReport report)
+        public ActionResult Create(CatchReportDTO report)
         {
             _catchReportService.Create(report);
             return Ok(report);

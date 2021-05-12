@@ -28,12 +28,6 @@ namespace FiskeNettet
         public void ConfigureServices(IServiceCollection services)
         {
             // Database Configurations
-            services.Configure<PeopleStoreDatabaseSettings>(
-                Configuration.GetSection(nameof(PeopleStoreDatabaseSettings)));
-
-            services.AddScoped<IPeopleStoreDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<PeopleStoreDatabaseSettings>>().Value);
-
             services.Configure<FishingSpotDatabaseSettings>(
                 Configuration.GetSection(nameof(FishingSpotDatabaseSettings)));
 
@@ -58,12 +52,10 @@ namespace FiskeNettet
             });
 
             // Services
-            services.AddScoped<IPeopleService, PeopleService>();
             services.AddScoped<IFishingSpotService, FishingSpotService>();
             services.AddScoped<ICatchReportService, CatchReportService>();
 
             // Repositories
-            services.AddScoped<IPeopleRepository, PeopleRepository>();
             services.AddScoped<IFishingSpotRepository, FishingSpotRepository>();
             services.AddScoped<ICatchReportRepository, CatchReportRepository>();
 

@@ -14,7 +14,7 @@ namespace FiskeNettet.Services
             _FishingSpotRepository = fishingSpotRepository;
         }
 
-        public void Create(FishingSpot spot)
+        public void Create(FishingSpotDTO spot)
         {
             _FishingSpotRepository.Create(spot);
         }
@@ -24,12 +24,12 @@ namespace FiskeNettet.Services
             _FishingSpotRepository.Delete(id);
         }
 
-        public List<FishingSpot> Get()
+        public List<FishingSpotDTO> Get()
         {
             return _FishingSpotRepository.Get();
         }
 
-        public FishingSpot Get(string id)
+        public FishingSpotDTO Get(string id)
         {
             return _FishingSpotRepository.Get(id);
         }
