@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace FiskeNettet.Entities.Models
 {
-    public class CatchReportDTO
+    [BsonCollection("Indrapporteringer")]
+    public class CatchReportDTO : Document
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
-
         [BsonElement("location")]
         public string Location { get; set; }
 

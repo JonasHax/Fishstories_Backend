@@ -11,6 +11,6 @@ namespace FiskeNettet.Services.Interfaces
 
         void Create(FishingSpotDTO spot);
 
-        void Delete(string id);
+        void DeleteById(string id);
     }
 }

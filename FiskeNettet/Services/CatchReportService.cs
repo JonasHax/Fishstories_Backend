@@ -10,9 +10,9 @@ namespace FiskeNettet.Services
 {
     public class CatchReportService : ICatchReportService
     {
-        private readonly ICatchReportRepository _catchReportRepository;
+        private readonly IMongoRepository<CatchReportDTO> _catchReportRepository;
 
-        public CatchReportService(ICatchReportRepository catchReportRepository)
+        public CatchReportService(IMongoRepository<CatchReportDTO> catchReportRepository)
         {
             _catchReportRepository = catchReportRepository;
         }
@@ -20,6 +20,11 @@ namespace FiskeNettet.Services
         public void Create(CatchReportDTO report)
         {
             _catchReportRepository.Create(report);
+        }
+
+        public void DeleteById(string id)
+        {
+            _catchReportRepository.DeleteById(id);
         }
 
         public List<CatchReportDTO> Get()

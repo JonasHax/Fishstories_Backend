@@ -28,17 +28,11 @@ namespace FiskeNettet
         public void ConfigureServices(IServiceCollection services)
         {
             // Database Configurations
-            services.Configure<FishingSpotDatabaseSettings>(
-                Configuration.GetSection(nameof(FishingSpotDatabaseSettings)));
+            // Generic pattern
+            services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDbSettings"));
 
-            services.AddScoped<IFishingSpotDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<FishingSpotDatabaseSettings>>().Value);
-
-            services.Configure<CatchReportsDatabaseSettings>(
-                Configuration.GetSection(nameof(CatchReportsDatabaseSettings)));
-
-            services.AddScoped<ICatchReportsDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<CatchReportsDatabaseSettings>>().Value);
+            services.AddScoped<IMongoDbSettings>(serviceProvider =>
+                serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
             // Cors
             services.AddCors(options =>
@@ -56,8 +50,11 @@ namespace FiskeNettet
             services.AddScoped<ICatchReportService, CatchReportService>();
 
             // Repositories
-            services.AddScoped<IFishingSpotRepository, FishingSpotRepository>();
-            services.AddScoped<ICatchReportRepository, CatchReportRepository>();
+            //services.AddScoped<IFishingSpotRepository, FishingSpotRepository>();
+            //services.AddScoped<ICatchReportRepository, CatchReportRepository>();
+
+            // Generic Repository
+            services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
             services.AddControllers();
 

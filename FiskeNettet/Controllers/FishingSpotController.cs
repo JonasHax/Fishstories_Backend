@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http.Cors;
 using FiskeNettet.Models;
+using FiskeNettet.Repositories.Interfaces;
 using FiskeNettet.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,8 +40,7 @@ namespace FiskeNettet.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            _fishingSpotService.Delete(id);
-            //return Ok();
+            _fishingSpotService.DeleteById(id);
             return NoContent();
         }
     }

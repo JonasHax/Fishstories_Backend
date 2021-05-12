@@ -5,11 +5,9 @@ using System.Collections.Generic;
 
 namespace FiskeNettet.Models
 {
-    public class FishingSpotDTO
+    [BsonCollection("Fiskepladser")]
+    public class FishingSpotDTO : Document
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
-
         [BsonElement("name")]
         public string Name { get; set; }
 

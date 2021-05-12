@@ -7,9 +7,9 @@ namespace FiskeNettet.Services
 {
     public class FishingSpotService : IFishingSpotService
     {
-        private readonly IFishingSpotRepository _FishingSpotRepository;
+        private readonly IMongoRepository<FishingSpotDTO> _FishingSpotRepository;
 
-        public FishingSpotService(IFishingSpotRepository fishingSpotRepository)
+        public FishingSpotService(IMongoRepository<FishingSpotDTO> fishingSpotRepository)
         {
             _FishingSpotRepository = fishingSpotRepository;
         }
@@ -19,9 +19,9 @@ namespace FiskeNettet.Services
             _FishingSpotRepository.Create(spot);
         }
 
-        public void Delete(string id)
+        public void DeleteById(string id)
         {
-            _FishingSpotRepository.Delete(id);
+            _FishingSpotRepository.DeleteById(id);
         }
 
         public List<FishingSpotDTO> Get()

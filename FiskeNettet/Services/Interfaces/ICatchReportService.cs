@@ -14,6 +14,6 @@ namespace FiskeNettet.Services.Interfaces
 
         void Create(CatchReportDTO report);
 
-        //void Delete(string id);
+        void DeleteById(string id);
     }
 }

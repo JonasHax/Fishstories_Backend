@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FiskeNettet.Entities.Models;
+using FiskeNettet.Repositories.Interfaces;
 using FiskeNettet.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,13 @@ namespace FiskeNettet.Controllers
         {
             _catchReportService.Create(report);
             return Ok(report);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
+        {
+            _catchReportService.DeleteById(id);
+            return NoContent();
         }
     }
 }
