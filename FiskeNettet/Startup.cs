@@ -35,15 +35,16 @@ namespace FiskeNettet
                 serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
             // Cors
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:3000", "http://localhost:5001")
-                            .WithHeaders(HeaderNames.AccessControlAllowHeaders, "*");
-                    });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("http://localhost:3000", "http://localhost:5001", "http://127.0.0.1:8887", "http://192.168.87.128:8887", "http://localhost:8887")
+            //                .WithHeaders(HeaderNames.AccessControlAllowHeaders, "*");
+            //        });
+            //});
+            services.AddCors();
 
             // Services
             services.AddScoped<IFishingSpotService, FishingSpotService>();
@@ -85,7 +86,11 @@ namespace FiskeNettet
                 c.RoutePrefix = string.Empty;
             });
 
-            app.UseCors();
+            //app.UseCors();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
