@@ -26,7 +26,12 @@ namespace FiskeNettet.Services
 
         public List<FishingSpotDTO> Get()
         {
-            return _FishingSpotRepository.Get();
+            List<FishingSpotDTO> fishingSpots = _FishingSpotRepository.Get();
+            foreach (FishingSpotDTO spot in fishingSpots)
+            {
+                spot.StringId = spot.Id.ToString();
+            }
+            return fishingSpots;
         }
 
         public FishingSpotDTO Get(string id)

@@ -22,5 +22,7 @@ namespace FiskeNettet.Models
 
         [BsonElement("type")]
         public string Type { get; set; }
+
+        public string StringId { get; set; }
     }
 }

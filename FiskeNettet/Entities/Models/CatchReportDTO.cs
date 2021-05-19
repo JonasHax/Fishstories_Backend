@@ -14,6 +14,10 @@ namespace FiskeNettet.Entities.Models
         [BsonElement("location")]
         public string Location { get; set; }
 
+        [BsonElement("location_id")]
+        [AllowNull]
+        public string Location_Id { get; set; }
+
         [BsonElement("description")]
         public string Description { get; set; }
 
